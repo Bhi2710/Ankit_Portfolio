@@ -1,8 +1,6 @@
-# Ankit Yadav — Academic & Research Portfolio
-
 ---
 
-## 📁 Project File Structure
+##  Project File Structure
 
 ```
 Personal_Page/
@@ -58,7 +56,7 @@ Personal_Page/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 Make sure you have **Node.js** (v18 or higher) and **npm** installed on your system.
@@ -101,14 +99,14 @@ npm run preview
 
 ---
 
-## ✏️ How to Update Content
+## How to Update Content
 
 All website text, research publications, conference talks, and personal details are separated cleanly in the **`src/data/`** directory. You do not need to modify any JSX/React components to update your information:
 
 
 ---
 
-## 🌐 Routes & Pages
+## Routes & Pages
 
 - **`/`** — Home welcome hero, research pillars, featured publication & quick exploration portal.
 - **`/about`** — Detailed scientific journey, affiliations, and education timeline.
@@ -121,7 +119,7 @@ All website text, research publications, conference talks, and personal details 
 
 ---
 
-## 🎨 Theme & Styling
+## Theme & Styling
 
 The color system preserves the astrophysics aesthetic:
 - **Space Navy (`#0b1b2b`)**: Navbar, hero banners, headers, dark accent badges.
