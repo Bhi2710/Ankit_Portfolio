@@ -1,15 +1,5 @@
 # Ankit Yadav — Academic & Research Portfolio
 
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.1-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-
-A modern, high-performance, and fully mobile-responsive academic and research portfolio website for **Ankit Yadav**, PhD Candidate in Astroparticle Physics at Khalifa University, Abu Dhabi.
-
-Inspired by clean academic website architectures (like [jhelvy.com](https://www.jhelvy.com/)), this project is built with **React**, **TypeScript**, **Vite**, and **Tailwind CSS**, featuring client-side multi-page routing, interactive scientific tooling (BibTeX citation copying, real-time conference search, category filters), an embedded CV viewer, and complete mobile responsiveness.
-
 ---
 
 ## 📁 Project File Structure
@@ -115,16 +105,6 @@ npm run preview
 
 All website text, research publications, conference talks, and personal details are separated cleanly in the **`src/data/`** directory. You do not need to modify any JSX/React components to update your information:
 
-| To update... | Edit file... |
-|---|---|
-| Bio, education degrees, GPA, social links | [`src/data/profileData.ts`](file:///C:/DemoProject/AnkitBhai_Personal_Page/Personal_Page/src/data/profileData.ts) |
-| Research projects, publications, BibTeX | [`src/data/researchData.ts`](file:///C:/DemoProject/AnkitBhai_Personal_Page/Personal_Page/src/data/researchData.ts) |
-| Computational software & code projects | [`src/data/projectsData.ts`](file:///C:/DemoProject/AnkitBhai_Personal_Page/Personal_Page/src/data/projectsData.ts) |
-| Conferences, seminars, posters, workshops | [`src/data/talksData.ts`](file:///C:/DemoProject/AnkitBhai_Personal_Page/Personal_Page/src/data/talksData.ts) |
-| Fellowships, awards, technical skills, outreach | [`src/data/moreData.ts`](file:///C:/DemoProject/AnkitBhai_Personal_Page/Personal_Page/src/data/moreData.ts) |
-| Courses taught & laboratory sessions | [`src/data/teachingData.ts`](file:///C:/DemoProject/AnkitBhai_Personal_Page/Personal_Page/src/data/teachingData.ts) |
-| Replace CV PDF document | Overwrite [`public/cv/CV_Ankit_Yadav.pdf`](file:///C:/DemoProject/AnkitBhai_Personal_Page/Personal_Page/public/cv/CV_Ankit_Yadav.pdf) |
-| Replace Profile Headshot photo | Overwrite [`public/images/headshot.jpg`](file:///C:/DemoProject/AnkitBhai_Personal_Page/Personal_Page/public/images/headshot.jpg) |
 
 ---
 
@@ -152,7 +132,4 @@ The color system preserves the astrophysics aesthetic:
 
 ---
 
-## 📄 License & Attribution
 
-- Content & Documents: © 2024–2026 Ankit Yadav. Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
-- Source Code: MIT License.
