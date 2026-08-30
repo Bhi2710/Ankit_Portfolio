@@ -1,0 +1,51 @@
+---
+title: "Conferences, Presentations & Training"
+listing:
+  - id: talks_2025
+    contents:
+      - talks_2025.yml
+    sort: "date desc"
+    template: ../html/talks-listing.ejs
+    field-types:
+      date: date
+
+  - id: talks_2024
+    contents:
+      - talks_2024.yml
+    sort: "date desc"
+    template: ../html/talks-listing.ejs
+    field-types:
+      date: date
+  - id: talks_2024
+    contents:
+      - talks_2024_1.yml
+    sort: "date desc"
+    template: ../html/talks-listing.ejs
+    field-types:
+      date: date
+
+#title-block-banner: "#123456"
+page-layout: full
+toc: true
+toc-location: right
+toc-title: Year
+date-format: "MMMM D, YYYY"
+---
+
+This page collects slides, code, and links for workshops, seminars, and conference talks.
+
+::: {.callout-note}
+### Copyright
+
+Except where noted, all content is © {{< var name >}} and licensed under [Creative Commons](https://creativecommons.org/licenses/by-sa/4.0/).
+:::
+
+## 2025
+
+:::{#talks_2025}
+:::
+
+## 2024
+
+:::{#talks_2024}
+:::

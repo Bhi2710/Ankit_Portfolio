@@ -1,0 +1,66 @@
+---
+title: "Galactic Cosmic Rays and the Interstellar Medium"
+subtitle: "Modeling the transport of high-energy particles in the Galaxy"
+description: >
+  Bayesian modeling and numerical simulations of Galactic cosmic-ray
+  transport, including diffusion, reacceleration, and interactions with
+  interstellar gas and radiation fields.
+
+haiku:
+  - Charged ghosts cross the disk
+  - tangled fields and silent shocks
+  - write spectra in light
+
+categories:
+  - Galactic cosmic rays
+  - Astroparticle physics
+
+pub-info:
+  year: 2025
+  reference: >
+    A. Yadav, "Galactic Cosmic Rays and the Interstellar Medium," in
+    preparation, 2025.
+  links:
+    - name: arXiv
+      url: "#"
+      icon: fa-solid fa-book-open
+      local: false
+    - name: Code
+      url: "#"
+      icon: fa-brands fa-github
+      local: false
+    - name: PDF
+      url: "Yadav_GCR_ISM.pdf"
+      icon: fa-solid fa-file-pdf
+      local: true
+---
+
+## Abstract
+
+*(Write a 1–2 paragraph abstract here summarizing the problem, method, and key findings.)*
+
+## Key figures
+
+::: {.key-figure}
+![Schematic of cosmic-ray transport in the Galactic disk.](figures/gcr-transport-schematic.png)
+:::
+
+::: {.key-figure}
+![Example spectrum compared to experimental data.](figures/gcr-spectrum-comparison.png)
+:::
+
+## Links & citation
+
+- **arXiv:** [to be added](#)  
+- **Code & notebooks:** [GitHub repository](#)  
+- **PDF:** [Download full paper](Yadav_GCR_ISM.pdf)
+
+### Suggested citation
+
+```bibtex
+@article{Yadav2025GCRISM,
+  author  = {Ankit Yadav},
+  title   = {Galactic Cosmic Rays and the Interstellar Medium},
+  year    = {2025},
+  journal = {In preparation}
+}

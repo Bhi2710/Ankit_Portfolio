@@ -1,0 +1,43 @@
+```{=html}
+<div class="talks">
+  <div class="list">
+    <% for (const talk of items) { %>
+      <div class="talk-entry" <%= metadataAttrs(talk) %>>
+        <div class="body">
+          <% if (talk.title) { %>
+            <div class="title listing-title"><%= talk.title %></div>
+          <% } %>
+
+          <% if (talk.description) { %>
+            <div class="description"><%= talk.description %></div>
+          <% } %>
+
+          <% if (talk.location) { %>
+            <div class="location listing-location"><%= talk.location %></div>
+          <% } %>
+        </div>
+
+        <div class="metadata">
+          <% if (talk.date) { %>
+            <!-- date is already formatted by Quarto using date-format -->
+            <div class="date listing-date"><%= talk.date %></div>
+          <% } %>
+        </div>
+      </div>
+
+      <% if (talk.links && talk.links.length) { %>
+        <ul class="talk-links">
+          <% for (const link of talk.links) { %>
+            <li class="talk-link">
+              <a href="<%= link.url %>">
+                <% if (link.icon) { %><i class="<%= link.icon %>"></i><% } %>
+                <%= link.name %>
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      <% } %>
+    <% } %>
+  </div>
+</div>
+```

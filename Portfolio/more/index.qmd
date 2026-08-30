@@ -1,0 +1,34 @@
+---
+title: "More"
+listing:
+  - id: more
+    contents:
+      - "Awards/*.yml"
+      - "Skills/*.yml"
+      - "Outreach/*.yml"
+    sort: "date desc"
+    template: ../html/more-listing.ejs
+    field-types:
+      date: date
+
+page-layout: full
+toc: false
+date-format: "MMMM D, YYYY"
+---
+
+:::{#more}
+:::
+
+```{=html}
+<style>
+  /* Hide the entire title block on this page */
+  header#title-block-header.quarto-title-block {
+    display: none;
+  }
+
+  /* Reduce the top padding of the main content so sections sit closer to the navbar */
+  main#quarto-document-content {
+    padding-top: -0.5rem;  /* tweak this value if you want it tighter/looser */
+  }
+</style>
+```

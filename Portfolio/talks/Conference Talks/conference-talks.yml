@@ -1,0 +1,68 @@
+# How to use this list:
+# - Each entry is a talk you've given.
+# - Fields:
+#     title:        Full title of the talk
+#     date:         Date in YYYY-MM-DD format
+#     location:     Venue, institution, city, country
+#     description:  One-line description of the content/context
+#     category:     One of:
+#                     - "conference_talk"  (talks at conferences, symposia, formal research meetings)
+#                     - "seminar_talk"     (departmental seminars, colloquia, invited talks, internal talks)
+#                     - "training_talk"    (tutorials, workshops, training sessions, hands-on lectures)
+#     slides: if "true" it will say coming soon, you can put the path later once published
+# - To add a new entry, copy this template and fill it in:
+#   - title: "Your talk title"
+#     date: YYYY-MM-DD
+#     location: "Venue, City, Country"
+#     description: "One-line description of the talk."
+#     category: "conference_talk"  # or "seminar_talk" or "training_talk"
+
+- title: "Bayesian modeling of Galactic cosmic-ray propagation"
+  date: 2025-04-12
+  location: "Graduate Students Research Conference (GSRC 2025), American University of Sharjah, UAE"
+  description: "Presented a Bayesian framework for modeling Galactic cosmic-ray propagation parameters."
+  category: "conference_talk"
+  slides: talks\Constrain_on_the_Maximum_Nearby_Contribution_to_the_All_Electron_Spectrum.pdf #true
+
+- title: "Bayesian modeling of Galactic cosmic-ray propagation"
+  date: 2025-01-06
+  location: "CRPropa Conference on Astroparticle Propagation 2025, Khalifa University, Abu Dhabi, UAE"
+  description: "Talk on Bayesian modeling of Galactic cosmic-ray propagation using CRPropa-based simulations."
+  category: "conference_talk"
+  slides: true
+
+- title: "Solving the time-dependent transport equation for cosmic rays"
+  date: 2023-05-01
+  location: "Khalifa University, Abu Dhabi, UAE"
+  description: "Seminar on numerical schemes for solving the time-dependent transport equation for cosmic rays from supernova remnants."
+  category: "seminar_talk"
+
+- title: "Dispersion measures of fast radio bursts"
+  date: 2022-12-01
+  location: "Khalifa University, Abu Dhabi, UAE"
+  description: "Seminar on using fast radio burst dispersion measures to probe baryons in the intergalactic medium."
+  category: "seminar_talk"
+
+- title: "Gravitational waves: history, detection, and prospects"
+  date: 2022-12-02
+  location: "Khalifa University, Abu Dhabi, UAE"
+  description: "Introductory seminar tracing the development of gravitational-wave astronomy and future detector prospects."
+  category: "seminar_talk"
+
+- title: "Model-dependent cosmological parameter fitting"
+  date: 2022-04-01
+  location: "Indian Institute of Science Education and Research (IISER) Mohali, India"
+  description: "Talk on fitting cosmological parameters using model-dependent dark energy parameterisations."
+  category: "seminar_talk"
+
+- title: "Model-dependent cosmological parameter fitting"
+  date: 2022-12-01
+  location: "Indian Institute of Science Education and Research (IISER) Mohali, India"
+  description: "Follow-up seminar discussing refinements in model-dependent cosmological parameter fitting."
+  category: "seminar_talk"
+
+- title: "Large-scale structures and galaxy clustering"
+  date: 2022-04-15
+  location: "Indian Institute of Science Education and Research (IISER) Mohali, India"
+  description: "Seminar on large-scale structure formation and galaxy clustering in modern cosmology."
+  category: "seminar_talk"

@@ -1,0 +1,48 @@
+# How to use this list:
+# - Each entry is a skill group.
+# - Fields:
+#     section:       Use "skills".
+#     title:         Skill category (required).
+#     description:   Short overview of what you do with this skill.
+#     experience:    Optional; how/where you’ve used it (tone: one sentence).
+#     links:         Optional; list of related projects or repos:
+#                      - name: "Project name"
+#                        url:  "https://example.com"
+#     certifications: Optional; list of relevant certifications:
+#                      - name: "Certificate title"
+#                        url:  "https://example.com"
+
+- section: "skills"
+  title: "Computational"
+  experience:
+    - "Bayesian inference and uncertainty quantification for Galactic cosmic-ray propagation models."
+    - "Parameter scans and model comparison for the <a href=\"/research/#galactic-cosmic-rays\">Galactic cosmic-ray propagation project</a>."
+    - "Analysis and visualization of simulation outputs for publications and talks."
+
+- section: "skills"
+  title: "Programming Languages"
+  experience:
+    - "Python for day-to-day PhD analysis, pipelines, and plotting."
+    - "C++ and Fortran for performant CRPropa extensions in the <a href=\"/research/#galactic-cosmic-rays\">cosmic-ray propagation project</a>."
+    - "C and MATLAB used in earlier coursework and small utilities."
+  links:
+    - name: "GitHub profile"
+      url: "https://github.com/YOUR-USERNAME"
+
+- section: "skills"
+  title: "Software & Frameworks"
+  experience:
+    - "PyMC and emcee for Bayesian modelling of propagation parameters."
+    - "ROOT for event-level analysis and histogramming in HEP contexts."
+    - "Mathematica for symbolic checks and quick analytic calculations."
+    - "PyBind11 for exposing C++ simulation code to Python analysis scripts."
+
+- section: "skills"
+  title: "High-Performance Computing"
+  experience:
+    - "Regular SLURM use on Linux clusters to run ensembles of CRPropa simulations."
+    - "MPI and OpenMP to parallelise propagation runs over large parameter grids."
+    - "Basic profiling and optimisation of C++ and Python on HPC systems."
+  certifications:
+    - name: "HPC & Parallel Programming short course"
+      url: "https://example.com/hpc-course"    # update / keep as placeholder

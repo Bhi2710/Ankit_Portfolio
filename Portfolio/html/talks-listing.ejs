@@ -1,0 +1,348 @@
+```{=html}
+<%
+/**
+ * Talks listing helper
+ *
+ * Data convention:
+ * - Each talk can optionally set `talk.category` as one of:
+ *     - "conference_talk"  // talks at conferences, symposia, formal meetings
+ *     - "seminar_talk"     // departmental seminars, colloquia, invited / internal talks
+ *     - "training_talk"    // tutorials, workshops, training, hands-on lectures
+ *
+ * - If no category is provided:
+ *     - we still try to detect posters and workshops from path/description
+ *     - but we DO NOT guess conference/seminar; those fall back to "Other"
+ */
+
+function getYear(talk) {
+  if (!talk.date) return "Unknown";
+  const d = new Date(talk.date);
+  if (isNaN(d)) return "Unknown";
+  return String(d.getFullYear());
+}
+
+// Internal category keys (for grouping)
+const CATEGORY_LABELS = {
+  conference: "Conference Presentations",
+  poster:     "Poster Presentations",
+  seminar:    "Academic/Seminar Presentation",
+  training:   "Workshops & Training",
+  other:      "Other"
+};
+
+// Order in which categories appear within each year
+const CATEGORY_ORDER = [
+  "conference",
+  "poster",
+  "seminar",
+  "training"
+];
+
+// Normalize an explicit talk.category (if present)
+// into one of our internal keys, including legacy values.
+function normalizeExplicitCategory(cat) {
+  if (!cat) return null;
+  const c = String(cat).toLowerCase().trim();
+
+  // New machine-friendly values
+  if (c === "conference_talk" || c === "conference") return "conference";
+  if (c === "seminar_talk"    || c === "seminar")    return "seminar";
+  if (c === "training_talk"   || c === "training" || c === "workshop") return "training";
+
+  // Legacy / human-readable values that might already exist
+  if (c === "conference talks" ||
+      c === "conference presentation" ||
+      c === "conference presentations") {
+    return "conference";
+  }
+
+  if (c === "poster" ||
+      c === "poster presentation" ||
+      c === "poster presentations" ||
+      c === "poster_presentation") {
+    return "poster";
+  }
+
+  if (c === "academic/seminar presentation" ||
+      c === "academic/seminar presentations" ||
+      c === "seminar presentation" ||
+      c === "seminar presentations" ||
+      c === "seminar talks") {
+    return "seminar";
+  }
+
+  if (c === "workshops & training" ||
+      c === "workshop & training" ||
+      c === "training session" ||
+      c === "training presentation") {
+    return "training";
+  }
+
+  return null;
+}
+
+// Get category:
+// - use explicit talk.category if recognized
+// - otherwise only auto-detect posters and workshops
+// - no guessing "conference" / "seminar" from text; those go to "other"
+function getCategory(talk) {
+  const explicit = normalizeExplicitCategory(talk.category);
+  if (explicit) return explicit;
+
+  const p = String(talk.file || talk.path || talk.href || talk.inputFile || "")
+    .replace(/\\/g, "/")
+    .toLowerCase();
+  const d = String(talk.description || "").toLowerCase();
+
+  // Keep auto-classification for posters
+  if (p.includes("poster") || d.includes("poster")) {
+    return "poster";
+  }
+
+  // Keep auto-classification for workshops & training
+  if (
+    p.includes("workshop") || p.includes("training") ||
+    d.includes("workshop") || d.includes("training") || d.includes("school")
+  ) {
+    return "training";
+  }
+
+  // Everything else without explicit category -> Other
+  return "other";
+}
+
+// group by year -> category
+const yearMap = new Map();
+
+for (const talk of items) {
+  const year = getYear(talk);
+  const cat  = getCategory(talk);
+
+  if (!yearMap.has(year)) {
+    yearMap.set(year, {
+      conference: [],
+      poster:     [],
+      seminar:    [],
+      training:   [],
+      other:      []
+    });
+  }
+
+  const buckets = yearMap.get(year);
+  (buckets[cat] || buckets.other).push(talk);
+}
+
+// sort years desc, Unknown last
+let years = Array.from(yearMap.keys());
+years = years.filter(y => y !== "Unknown").sort((a, b) => Number(b) - Number(a));
+if (yearMap.has("Unknown")) years.push("Unknown");
+%>
+
+<div class="talks-layout">
+  <div class="talks">
+    <div class="list">
+      <% for (const year of years) {
+           const groups = yearMap.get(year);
+      %>
+        <section class="talk-year">
+          <h2 id="year-<%= year %>"><%= year %></h2>
+
+          <% for (const key of CATEGORY_ORDER) {
+               const group = groups[key] || [];
+               if (!group.length) continue;
+               const label = CATEGORY_LABELS[key] || key;
+          %>
+            <h3 class="talk-type"><%= label %></h3>
+
+            <% for (const talk of group) {
+                 // Build combined links array from slides/poster flags + explicit links
+                 const links = [];
+
+                 // Slides
+                 if (typeof talk.slides !== "undefined") {
+                   if (typeof talk.slides === "string") {
+                     links.push({
+                       url: "../files/" + talk.slides,
+                       name: "Slides",
+                       icon: "fa-regular fa-file-powerpoint"
+                     });
+                   } else if (talk.slides === true) {
+                     links.push({
+                       url: null,
+                       name: "Slides (coming soon)",
+                       icon: "fa-regular fa-file-powerpoint"
+                     });
+                   }
+                 }
+
+                 // Poster
+                 if (typeof talk.poster !== "undefined") {
+                   if (typeof talk.poster === "string") {
+                     links.push({
+                       url: "../files/" + talk.poster,
+                       name: "Poster",
+                       icon: "fa-regular fa-image"
+                     });
+                   } else if (talk.poster === true) {
+                     links.push({
+                       url: null,
+                       name: "Poster (coming soon)",
+                       icon: "fa-regular fa-image"
+                     });
+                   }
+                 }
+
+                 // Any explicit links defined in YAML
+                 if (Array.isArray(talk.links)) {
+                   for (const l of talk.links) links.push(l);
+                 }
+            %>
+              <div class="talk-entry" <%= metadataAttrs(talk) %>>
+                <div class="talk-header">
+                  <div class="talk-main">
+                    <% if (talk.title) { %>
+                      <div class="title listing-title talk-title"><%= talk.title %></div>
+                    <% } %>
+
+                    <% if (talk.location) { %>
+                      <div class="location listing-location talk-location"><%= talk.location %></div>
+                    <% } %>
+
+                    <% if (talk.description) { %>
+                      <div class="talk-description"><%= talk.description %></div>
+                    <% } %>
+                  </div>
+
+                  <% if (talk.date) { %>
+                    <div class="metadata talk-date listing-date"><%= talk.date %></div>
+                  <% } %>
+                </div>
+
+                <% if (links && links.length) { %>
+                  <ul class="talk-links">
+                    <% for (const link of links) { %>
+                      <li class="talk-link">
+                        <% if (link.url) { %>
+                          <a href="<%= link.url %>" target="_blank" rel="noopener">
+                            <% if (link.icon) { %><i class="<%= link.icon %>"></i><% } %>
+                            <%= link.name %>
+                          </a>
+                        <% } else { %>
+                          <span class="talk-link-disabled">
+                            <% if (link.icon) { %><i class="<%= link.icon %>"></i><% } %>
+                            <%= link.name %>
+                          </span>
+                        <% } %>
+                      </li>
+                    <% } %>
+                  </ul>
+                <% } %>
+              </div>
+            <% } %>
+          <% } %>
+
+          <% const others = groups.other || []; %>
+          <% if (others.length) { %>
+            <h3 class="talk-type"><%= CATEGORY_LABELS.other %></h3>
+
+            <% for (const talk of others) {
+                 const links = [];
+
+                 // Slides
+                 if (typeof talk.slides !== "undefined") {
+                   if (typeof talk.slides === "string") {
+                     links.push({
+                       url: "files/" + talk.slides,
+                       name: "Slides",
+                       icon: "fa-regular fa-file-powerpoint"
+                     });
+                   } else if (talk.slides === true) {
+                     links.push({
+                       url: null,
+                       name: "Slides (coming soon)",
+                       icon: "fa-regular fa-file-powerpoint"
+                     });
+                   }
+                 }
+
+                 // Poster
+                 if (typeof talk.poster !== "undefined") {
+                   if (typeof talk.poster === "string") {
+                     links.push({
+                       url: "files/" + talk.poster,
+                       name: "Poster",
+                       icon: "fa-regular fa-image"
+                     });
+                   } else if (talk.poster === true) {
+                     links.push({
+                       url: null,
+                       name: "Poster (coming soon)",
+                       icon: "fa-regular fa-image"
+                     });
+                   }
+                 }
+
+                 if (Array.isArray(talk.links)) {
+                   for (const l of talk.links) links.push(l);
+                 }
+            %>
+              <div class="talk-entry" <%= metadataAttrs(talk) %>>
+                <div class="talk-header">
+                  <div class="talk-main">
+                    <% if (talk.title) { %>
+                      <div class="title listing-title talk-title"><%= talk.title %></div>
+                    <% } %>
+
+                    <% if (talk.location) { %>
+                      <div class="location listing-location talk-location"><%= talk.location %></div>
+                    <% } %>
+
+                    <% if (talk.description) { %>
+                      <div class="talk-description"><%= talk.description %></div>
+                    <% } %>
+                  </div>
+
+                  <% if (talk.date) { %>
+                    <div class="metadata talk-date listing-date"><%= talk.date %></div>
+                  <% } %>
+                </div>
+
+                <% if (links && links.length) { %>
+                  <ul class="talk-links">
+                    <% for (const link of links) { %>
+                      <li class="talk-link">
+                        <% if (link.url) { %>
+                          <a href="<%= link.url %>" target="_blank" rel="noopener">
+                            <% if (link.icon) { %><i class="<%= link.icon %>"></i><% } %>
+                            <%= link.name %>
+                          </a>
+                        <% } else { %>
+                          <span class="talk-link-disabled">
+                            <% if (link.icon) { %><i class="<%= link.icon %>"></i><% } %>
+                            <%= link.name %>
+                          </span>
+                        <% } %>
+                      </li>
+                    <% } %>
+                  </ul>
+                <% } %>
+              </div>
+            <% } %>
+          <% } %>
+
+        </section>
+      <% } %>
+    </div>
+  </div>
+
+  <aside class="talks-year-nav" aria-label="Year">
+    <div class="talks-year-nav-title">Year</div>
+    <ul>
+      <% for (const year of years) { %>
+        <li><a href="#year-<%= year %>"><%= year %></a></li>
+      <% } %>
+    </ul>
+  </aside>
+</div>
+
+```

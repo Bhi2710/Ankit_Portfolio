@@ -1,0 +1,89 @@
+---
+title: "Research Experience"
+page-layout: full
+listing:
+  - id: publications
+    contents:
+      - "*/index.qmd"
+    sort: "pub-info.year desc"
+    template: ../html/research-listing.ejs
+    sort-ui: false
+    filter-ui: false
+---
+
+## Research Interests
+
+<div class="research-summary">
+
+### Galactic cosmic rays & propagation
+
+- Transport of cosmic rays in the Milky Way  
+- Diffusion, reacceleration, and energy losses in different ISM phases  
+- Links between cosmic rays, gamma-ray emission, and radio observations  
+
+### Astroparticle methods
+
+- Bayesian inference for propagation and source parameters  
+- Forward modelling with CRPropa-based simulations  
+- Statistical treatment of multi-messenger datasets  
+
+### Related interests
+
+- Structure and turbulence of the interstellar medium  
+- High-energy processes near shocks and compact objects  
+
+</div>
+
+## Current Work in Progress
+
+<div class="research-current">
+
+- **Bayesian modeling of Galactic cosmic-ray propagation**  
+  Developing a Bayesian framework (with CRPropa simulations) to constrain
+  propagation parameters using current cosmic-ray measurements.
+
+- **Weak-shock reacceleration and the all-electron spectrum**  
+  Studying how weak shocks in the ISM reaccelerate electrons / positrons
+  and how this affects the observed all-electron spectrum.
+
+- **Future directions**  
+  Extending these models to include spatially varying diffusion and
+  comparing with gamma-ray observations of nearby regions.
+
+</div>
+
+## Publications
+
+:::{#publications}
+:::
+
+## Previous Projects & Experience
+
+<div class="research-previous">
+
+- **PhD research – [Group / University]**  
+  Ongoing work on Galactic cosmic rays, transport modelling, and
+  comparison with high-energy observations.
+
+- **MSc thesis – [Title]**  
+  One-line description of the topic and main methods / tools used.
+
+- **Other experience**  
+  - Short project / internship you want to highlight  
+  - Any relevant code, data analysis, or teaching / outreach
+
+</div>
+
+```{=html}
+<style>
+  /* Hide the Quarto title block so "Research Experience" only appears in browser tab */
+  header#title-block-header.quarto-title-block {
+    display: none;
+  }
+
+  /* Optional: adjust spacing under navbar */
+  main#quarto-document-content {
+    padding-top: 0;
+  }
+</style>
+```

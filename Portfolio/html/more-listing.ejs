@@ -1,0 +1,252 @@
+```{=html}
+<%
+/**
+ * More listing template
+ *
+ * Used by: more/index.qmd
+ *
+ * Expected YAML structure:
+ *   - Awards:   more/Awards/awards.yml     (section: "awards")
+ *   - Skills:   more/Skills/skills.yml     (section: "skills")
+ *   - Outreach: more/Outreach/outreach.yml (section: "outreach")
+ *
+ * Each entry can define:
+ *   - section:      "awards" | "skills" | "outreach"  (preferred for grouping)
+ *   - title:        string (required)
+ *   - description:  string (optional)
+ *   - location:     string (optional)
+ *   - date:         date or string (optional, used for sorting and default display)
+ *   - date_display: string (optional, overrides display)
+ *   - date_range:   string (optional, fallback override for display)
+ *   - experience:   string (optional; mainly for skills)
+ *   - links:        array of { name, url } (optional)
+ *   - certifications: array of { name, url } (optional; mainly for skills)
+ */
+
+// Normalize a free-form section label into our internal keys
+function normalizeSection(section) {
+  if (!section) return null;
+  const s = String(section).toLowerCase().trim();
+
+  if (s === "award" || s === "awards" || s === "honor" || s === "honors") {
+    return "awards";
+  }
+  if (s === "skill" || s === "skills") {
+    return "skills";
+  }
+  if (
+    s === "outreach" ||
+    s === "service" ||
+    s === "teaching" ||
+    s === "teaching/outreach" ||
+    s === "teaching, outreach & service"
+  ) {
+    return "outreach";
+  }
+
+  return null;
+}
+
+// Try to classify an item by explicit section first,
+// then fall back to guessing from any available path.
+function getSection(item) {
+  // 1) Explicit section field from YAML (recommended)
+  const explicit = normalizeSection(item.section);
+  if (explicit) return explicit;
+
+  // 2) Best-effort inference from path-like fields, if Quarto exposes them
+  const p = String(
+      item.file ||
+      item.inputFile ||
+      item.href ||
+      item.path ||
+      ""
+    )
+    .replace(/\\/g, "/")
+    .toLowerCase();
+
+  if (p.includes("/awards/")   || p.startsWith("awards/"))   return "awards";
+  if (p.includes("/skills/")   || p.startsWith("skills/"))   return "skills";
+  if (p.includes("/outreach/") || p.startsWith("outreach/")) return "outreach";
+
+  // 3) Fallback
+  return "other";
+}
+
+// Buckets for each section
+const sections = {
+  awards:   [],
+  skills:   [],
+  outreach: [],
+  other:    []
+};
+
+// Assign each item to a bucket
+for (const it of items) {
+  const key = getSection(it);
+  (sections[key] || sections.other).push(it);
+}
+%>
+
+<div class="more-layout">
+  <div class="more-list">
+
+    <% if (sections.awards.length) { %>
+      <section class="more-section">
+        <h2 class="more-heading">Awards &amp; Honors</h2>
+
+        <% for (const it of sections.awards) {
+             const displayDate = it.date_display || it.date_range || it.date;
+        %>
+          <div class="talk-entry more-entry" <%= metadataAttrs(it) %>>
+            <div class="talk-header">
+              <div class="talk-main">
+                <% if (it.title) { %>
+                  <div class="title listing-title talk-title"><%= it.title %></div>
+                <% } %>
+
+                <% if (it.location) { %>
+                  <div class="location listing-location talk-location"><%= it.location %></div>
+                <% } %>
+
+                <% if (it.description) { %>
+                  <div class="talk-description"><%= it.description %></div>
+                <% } %>
+              </div>
+
+              <% if (displayDate) { %>
+                <div class="metadata talk-date listing-date"><%= displayDate %></div>
+              <% } %>
+            </div>
+          </div>
+        <% } %>
+      </section>
+    <% } %>
+
+    <% if (sections.skills.length) { %>
+      <section class="more-section">
+        <h2 class="more-heading">Skills</h2>
+
+        <div class="skills-grid">
+          <% for (const it of sections.skills) {
+               const hasLinks = Array.isArray(it.links) && it.links.length;
+               const hasCerts = Array.isArray(it.certifications) && it.certifications.length;
+          %>
+            <article class="skill-card" <%= metadataAttrs(it) %>>
+              <% if (it.title) { %>
+                <h3 class="skill-title"><%= it.title %></h3>
+              <% } %>
+
+              <% if (it.description) { %>
+                <p class="skill-description"><%= it.description %></p>
+              <% } %>
+
+              <% if (it.experience) { %>
+                <p class="skill-experience"><%= it.experience %></p>
+              <% } %>
+
+              <% if (hasCerts) { %>
+                <div class="skill-certifications">
+                  <span class="skill-label">Certifications:</span>
+                  <% for (let i = 0; i < it.certifications.length; i++) {
+                       const c = it.certifications[i];
+                       if (!c) continue;
+                  %>
+                    <% if (c.url) { %>
+                      <a href="<%= c.url %>" target="_blank" rel="noopener"><%= c.name %></a>
+                    <% } else { %>
+                      <span><%= c.name %></span>
+                    <% } %>
+                    <% if (i < it.certifications.length - 1) { %>, <% } %>
+                  <% } %>
+                </div>
+              <% } %>
+
+              <% if (hasLinks) { %>
+                <ul class="skill-links">
+                  <% for (const link of it.links) {
+                       if (!link || !link.name) continue;
+                  %>
+                    <li class="skill-link">
+                      <% if (link.url) { %>
+                        <a href="<%= link.url %>" target="_blank" rel="noopener"><%= link.name %></a>
+                      <% } else { %>
+                        <span class="talk-link-disabled"><%= link.name %></span>
+                      <% } %>
+                    </li>
+                  <% } %>
+                </ul>
+              <% } %>
+            </article>
+          <% } %>
+        </div>
+      </section>
+    <% } %>
+
+    <% if (sections.outreach.length) { %>
+      <section class="more-section">
+        <h2 class="more-heading">Outreach &amp; Public Engagement</h2>
+
+        <% for (const it of sections.outreach) {
+             const displayDate = it.date_display || it.date_range || it.date;
+        %>
+          <div class="talk-entry more-entry" <%= metadataAttrs(it) %>>
+            <div class="talk-header">
+              <div class="talk-main">
+                <% if (it.title) { %>
+                  <div class="title listing-title talk-title"><%= it.title %></div>
+                <% } %>
+
+                <% if (it.location) { %>
+                  <div class="location listing-location talk-location"><%= it.location %></div>
+                <% } %>
+
+                <% if (it.description) { %>
+                  <div class="talk-description"><%= it.description %></div>
+                <% } %>
+              </div>
+
+              <% if (displayDate) { %>
+                <div class="metadata talk-date listing-date"><%= displayDate %></div>
+              <% } %>
+            </div>
+          </div>
+        <% } %>
+      </section>
+    <% } %>
+
+    <% if (sections.other.length) { %>
+      <section class="more-section">
+        <h2 class="more-heading">Other</h2>
+
+        <% for (const it of sections.other) {
+             const displayDate = it.date_display || it.date_range || it.date;
+        %>
+          <div class="talk-entry more-entry" <%= metadataAttrs(it) %>>
+            <div class="talk-header">
+              <div class="talk-main">
+                <% if (it.title) { %>
+                  <div class="title listing-title talk-title"><%= it.title %></div>
+                <% } %>
+
+                <% if (it.location) { %>
+                  <div class="location listing-location talk-location"><%= it.location %></div>
+                <% } %>
+
+                <% if (it.description) { %>
+                  <div class="talk-description"><%= it.description %></div>
+                <% } %>
+              </div>
+
+              <% if (displayDate) { %>
+                <div class="metadata talk-date listing-date"><%= displayDate %></div>
+              <% } %>
+            </div>
+          </div>
+        <% } %>
+      </section>
+    <% } %>
+
+  </div>
+</div>
+```

@@ -1,0 +1,38 @@
+---
+title: "Conferences, Presentations & Training"
+listing:
+  - id: talks
+    contents:
+      - "Conference Talks/*.yml"
+      - "Poster Presentations/*.yml"
+      - "Workshops & Training/*.yml"
+    sort: "date desc"
+    template: ../html/talks-listing.ejs
+    field-types:
+      date: date
+
+page-layout: full
+toc: false
+date-format: "MMMM D, YYYY"
+---
+
+:::{#talks}
+:::
+
+```{=html}
+<style>
+  /* 1. Hide the entire title block on this page */
+  header#title-block-header.quarto-title-block {
+    display: none;
+  }
+
+  /* 2. Reduce top padding of the main content on this page */
+  main#quarto-document-content {
+    padding-top: 0.75rem;  /* tweak this if you want even tighter */
+  }
+
+  /* 3. Pull the first year heading up a bit */
+  main#quarto-document-content .talk-year:first-of-type h2 {
+    margin-top: 0.25rem;
+  }
+</style>

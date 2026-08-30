@@ -1,0 +1,17 @@
+- title: "Bayesian analysis of Galactic cosmic-ray transport with weak-shock reacceleration"
+  date: 2025-11-03
+  location: "TeV Particle Astrophysics Conference (TeVPA 2025), Valencia, Spain"
+  description: "Poster on Bayesian analysis of Galactic cosmic-ray transport including weak-shock reacceleration."
+  poster: true   # or "tevpa2025-bayesian-gcr-poster.pdf"
+
+- title: "Bayesian modeling of cosmic-ray transport"
+  date: 2025-07-15
+  location: "International Cosmic Ray Conference (ICRC 2025), CICG, Geneva, Switzerland"
+  description: "Poster on Bayesian modeling of Galactic cosmic-ray transport presented at ICRC 2025."
+  poster: true
+
+- title: "Numerical solution to time-dependent transport equations for cosmic rays originating from supernova remnants"
+  date: 2024-04-20
+  location: "9th UAE Graduate Students Research Conference (GSRC 2024), UAE University, Al Ain, UAE"
+  description: "Poster on numerical solutions to time-dependent transport equations for cosmic rays from supernova remnants."
+  poster: true

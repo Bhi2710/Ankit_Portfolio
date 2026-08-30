@@ -1,0 +1,18 @@
+name: "Ankit Yadav"
+years: "2024–2026"
+
+email:
+  primary: "yankit0511@gmail.com"
+  institution: "100062650@ku.ac.ae"
+
+orcid: "0009-0001-3528-5910"
+
+# Optional PGP info (only if you actually use PGP)
+pgp:
+  key: "/files/keys/ankit_pgp.txt"
+  fingerprint: "XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX"
+
+github-url: "https://github.com/your-username"   # TODO: replace with real repo if you use one
+ku-profile: "https://www.ku.ac.ae/college-people/ankit-yadav/"
+google-scholar: "https://scholar.google.com/citations?user=-kHzTn0AAAAJ&hl=en"
+linkedin-url: "https://www.linkedin.com/in/ankit-yadav-b915a9181/"

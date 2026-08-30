@@ -1,0 +1,11 @@
+- title: "Cosmic Rays in world: High-Energy Astrophysics from Abu Dhabi"
+  date: 2024-10-10
+  description: "Seminar at the Department of Physics, Khalifa University"
+  location: "Abu Dhabi, UAE"
+  links:
+    - name: "Slides"
+      url: "#"
+      icon: "fa-solid fa-chalkboard-user"
+    - name: "GitHub repository"
+      url: "#"
+      icon: "fa-brands fa-github"

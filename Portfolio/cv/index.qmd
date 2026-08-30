@@ -1,0 +1,40 @@
+---
+title: "CV"
+page-layout: full
+toc: false
+---
+
+<p>
+  <a class="btn btn-primary cv-download"
+     href="CV_Ankit_Yadav.pdf"
+     target="_blank"
+     rel="noopener">
+    <i class="bi bi-download" aria-hidden="true"></i>
+    Download CV (PDF)
+  </a>
+</p>
+
+<p class="cv-last-updated">
+  CV last updated: January 16, 2026
+</p>
+
+<div class="cv-embed">
+  <iframe
+    src="CV_Ankit_Yadav.pdf"
+    title="CV – Ankit Yadav">
+  </iframe>
+</div>
+
+```{=html}
+<style>
+  /* Hide the Quarto title block so "CV" only appears in browser tab */
+  header#title-block-header.quarto-title-block {
+    display: none;
+  }
+
+  /* Optional: adjust spacing under navbar */
+  main#quarto-document-content {
+    padding-top: 0;
+  }
+</style>
+```

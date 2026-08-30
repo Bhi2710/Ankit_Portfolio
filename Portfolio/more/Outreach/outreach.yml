@@ -1,0 +1,54 @@
+# How to use this list:
+# - Each entry is a teaching, outreach, or service activity.
+# - Fields:
+#     section:     Use "outreach".
+#     title:       Name/role of the activity (required).
+#     date:        Start date in YYYY-MM-DD (for sorting; optional).
+#     date_display:
+#                  Optional string for nicer display (e.g., "Aug 2025 – Present").
+#     location:    Institution / venue (optional).
+#     description: 1–3 sentences describing audience, scope, or impact.
+
+- section: "outreach"
+  title: "Secretary — Outreach, Recruitment, and Communications Committee"
+  date: 2025-08-01
+  date_display: "Aug 2025 – Present"
+  location: "Department of Physics, Khalifa University, Abu Dhabi, UAE"
+  description: >
+    Serving on the departmental committee that coordinates outreach, recruitment, and communications.
+    I help plan public-facing events, shape student-recruitment activities, and assist with departmental messaging.
+
+- section: "outreach"
+  title: "Volunteer — KU–CERN International Masterclass"
+  date: 2025-04-10
+  location: "Khalifa University, Abu Dhabi, UAE"
+  description: >
+    Worked with high-school students during the KU–CERN International Masterclass,
+    guiding them through Z₀ → ℓ⁺ℓ⁻ reconstruction using the HYPATIA event display
+    and introducing core ideas in collider physics.
+
+- section: "outreach"
+  title: "Organizing Committee — CRPropa Conference on Astroparticle Propagation"
+  date: 2025-01-06
+  location: "Department of Physics, Khalifa University, Abu Dhabi, UAE"
+  description: >
+    Member of the local organizing committee for the CRPropa conference on astroparticle propagation.
+    I helped with logistics, participant communication, and on-site coordination during the meeting.
+
+- section: "outreach"
+  title: "Primary Instructor — Introduction to Astronomy Lab"
+  date: 2023-09-01
+  date_display: "Fall 2023, Fall 2024 & Spring 2025"
+  location: "Khalifa University, Abu Dhabi, UAE"
+  description: >
+    Designed and led laboratory sessions for introductory astronomy courses,
+    supervising student projects and hands-on activities across multiple semesters.
+
+- section: "outreach"
+  title: "Organizing Committee — Astronomy Day"
+  date: 2023-03-01
+  date_display: "Spring 2023, Fall 2024 & Spring 2025"
+  location: "Khalifa University, Abu Dhabi, UAE"
+  description: >
+    Helped organize Astronomy Day events at Khalifa University, including public telescope viewing,
+    planetarium sessions, and interactive demonstrations aimed at school and community visitors.

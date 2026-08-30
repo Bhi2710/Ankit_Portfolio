@@ -1,0 +1,71 @@
+```{=html}
+<div class="research research-compact">
+  <% if (items && items.length) { %>
+    <% let currentYear = null; %>
+    <% let counter = 0; %>
+
+    <% for (const item of items) { 
+         const pub  = item['pub-info'] || {};
+         const year = pub.year || 'Other';
+    %>
+
+      <% if (year !== currentYear) { %>
+        <% if (currentYear !== null) { %>
+          </ul>
+        <% } %>
+
+        <h2 class="research-year"><%= year %></h2>
+        <ul class="research-list list">
+        <% currentYear = year; %>
+      <% } %>
+
+      <% counter++; %>
+
+      <li class="research-item" <%= metadataAttrs(item) %>>
+        <div class="research-links">
+          <!-- Left: number + full citation in one flex row -->
+          <div class="research-main">
+            <span class="research-number"><%= counter %>.</span>
+            <p class="research-ref listing-pub-info">
+              <%= pub.reference || item.title %>
+            </p>
+          </div>
+
+          <!-- Right: Abstract / arXiv / Code / PDF -->
+          <div class="research-actions">
+            <% if (item.outputHref) { %>
+              <a class="research-link primary"
+                href="<%- item.path %>#abstract">
+                Abstract
+              </a>
+            <% } %>
+
+            <% if (pub.links && pub.links.length) { 
+                 for (const link of pub.links) { 
+                   let href;
+                   if (link.local && item.outputHref) {
+                     href = item.outputHref.replace(/index\.html?$/, '') + link.url;
+                   } else {
+                     href = link.url;
+                   }
+            %>
+              <span class="research-link-sep">·</span>
+              <a class="research-link"
+                href="<%- href %>"
+                <% if (!link.local) { %>target="_blank" rel="noopener noreferrer"<% } %>>
+                <%= link.name %>
+              </a>
+            <%   } // end for links
+               } // end if links %>
+          </div>
+        </div>
+      </li>
+
+    <% } // end for items %>
+
+    </ul>
+  <% } else { %>
+    <p>No research projects yet.</p>
+  <% } %>
+</div>
+```

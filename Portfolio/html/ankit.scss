@@ -1,0 +1,627 @@
+/*-- scss:defaults --*/
+
+$theme: "ankit" !default;
+
+// Color system – calm, professional, astrophysics-ish
+$white:    #ffffff !default;
+$gray-100: #f7fafc !default;
+$gray-200: #e2e8f0 !default;
+$gray-300: #cbd5e0 !default;
+$gray-400: #a0aec0 !default;
+$gray-500: #718096 !default;
+$gray-600: #4a5568 !default;
+$gray-700: #2d3748 !default;
+$gray-800: #1a202c !default;
+$gray-900: #0b1120 !default;  // near-black
+
+// Astrophysics-friendly blues/teals
+$space-navy:   #0b1b2b !default;
+$deep-blue:    #3907ff !default;
+$accent-teal:  #1c7c86 !default;
+$accent-gold:  #e5b35d !default;
+
+$primary:   $accent-teal !default;
+$secondary: $gray-700 !default;
+$success:   #2f855a !default;
+$info:      #0c3dde !default;
+$warning:   #dd6b20 !default;
+$danger:    #e53e3e !default;
+$light:     $gray-300 !default;
+$dark:      $space-navy !default;
+
+// Fonts
+$font-family-sans-serif: "Libre Franklin" !default;
+$headings-font-family: "Jost" !default;
+$headings-font-weight: 600 !default;
+
+$navbar-font-family: "Jost" !default;
+$toc-font-family: "Jost" !default;
+$footer-font-family: "Jost" !default;
+
+// Body text color
+$body-color: $gray-900 !default;
+
+// Links – muted blue, subtle hover
+$link-color: $deep-blue !default;
+$link-decoration: none !default;
+$link-hover-color: darken($deep-blue, 12%) !default;
+$link-hover-decoration: underline !default;
+
+// Inline code
+$code-bg: $gray-200 !default;
+$code-color: $gray-900 !default;
+
+// Navbar – dark navy with teal/gold accents
+$navbar-bg: $space-navy !default;
+$navbar-fg: $white !default;
+$navbar-hl: $accent-gold !default;
+
+// Footer – same navy, softer text
+$footer-bg: $space-navy !default;
+$footer-fg: $gray-200 !default;
+
+
+/*-- scss:rules --*/
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: $gray-100;
+}
+
+/* Hero layout: image + text left-aligned */
+.home-hero {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.home-hero-photo {
+  flex-shrink: 0;
+}
+
+.home-hero-text {
+  max-width: 38rem;
+}
+
+/* Stack vertically on small screens */
+@media (max-width: 768px) {
+  .home-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Circular home portrait */
+.home-photo {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 0 3px rgba(15, 23, 42, 0.15),
+    0 12px 24px rgba(15, 23, 42, 0.3);
+}
+/* CV embed container */
+.cv-embed {
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background-color: $white;
+  border: 1px solid $gray-200;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* Make the iframe itself clean and responsive */
+.cv-embed iframe {
+  width: 100%;
+  height: 900px;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+/* Slightly shorter height on smaller screens */
+@media (max-width: 768px) {
+  .cv-embed iframe {
+    height: 600px;
+  }
+}
+/* Normal state */
+.cv-download.btn-primary {
+  background-color: #475569;   /* muted slate blue/grey */
+  border-color: #475569;
+  color: #ffffff;
+}
+
+/* Hover state */
+.cv-download.btn-primary:hover {
+  background-color: #334155;   /* a bit darker on hover */
+  border-color: #334155;
+  color: #ffffff;
+}
+.cv-last-updated {
+  font-size: 0.875rem;
+  color: #6b7280;      /* soft grey */
+  margin-top: 0.25rem;
+}
+/* Compact research listing: grouped by year, clean lines (no cards) */
+.research-compact {
+
+  margin-top: 2rem;
+
+  /* Year heading – let h2 control font-size so it matches other pages */
+  .research-year {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: $gray-900;
+  }
+
+  /* If Quarto wraps the year in an <a>, kill the link look */
+  .research-year a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .research-year a:hover {
+    text-decoration: none;
+  }
+
+  .research-year a::after {
+    content: none;  // hides any anchor icon
+  }
+
+  .research-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* One entry = one line, similar to .talk-entry */
+  .research-item {
+    margin: 0;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba($space-navy, 0.06);
+    margin-left: 0.9rem;   // align with talks
+  }
+
+  /* Row: number+text on the left, links on the right */
+  .research-links {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+
+    font-size: 0.9rem;
+  }
+
+  /* Left half: number column + reference */
+  .research-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .research-number {
+    flex: 0 0 auto;
+    min-width: 1.8rem;  // keeps alignment nice for 1–9, 10–99, ...
+    text-align: right;
+    margin-top: 0.15rem;
+    font-weight: 500;
+    color: $gray-700;
+  }
+
+  /* Reference text – match talk title size */
+  .research-ref {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-weight: 400;
+    font-size: 1.02rem;      // same as .talk-title
+    line-height: 1.5;
+    color: $gray-900;
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .research-ref strong {
+    font-weight: 600;
+    color: $space-navy;
+  }
+
+  /* Right side: link cluster */
+  .research-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    flex: 0 0 auto;
+    max-width: 25%;
+    min-width: 0;
+    font-size: 0.85rem;
+    justify-content: flex-end;
+    align-self: flex-start;
+  }
+
+  .research-link {
+    text-decoration: none;
+    color: $deep-blue;
+    font-weight: 500;
+
+    &:hover {
+      color: darken($accent-teal, 8%);
+      text-decoration: underline;
+    }
+
+    &.primary {
+      font-weight: 600;
+    }
+  }
+
+  .research-link-sep {
+    color: $gray-400;
+    margin: 0 0.15rem;
+  }
+
+  @media (max-width: 768px) {
+    .research-links {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .research-actions {
+      max-width: 100%;
+      flex: 0 0 100%;
+      justify-content: flex-start;
+    }
+
+    .research-ref {
+      max-width: 100%;
+    }
+  }
+}
+/* ---- Research page layout helpers ---- */
+
+.research-summary,
+.research-current,
+.research-previous {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  margin-left: 0.9rem;        // line up with .talk-entry indent
+  max-width: 60rem;           // keep text column comfortable
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.research-summary h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 0.9rem;
+  margin-bottom: 0.2rem;
+  color: $gray-800;
+}
+
+/* Small dots for lists so it feels a bit more “CV-like” */
+.research-summary ul,
+.research-current ul,
+.research-previous ul {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Add a faint line above publications section to echo talks layout */
+#publications {
+  margin-top: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba($space-navy, 0.08);
+}
+
+.talks-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+.talks-layout .talks {
+  margin-left: -4.5rem;   // try -0.5rem; adjust to -0.75rem or -1rem if you want more
+}
+.talks-year-nav {
+  position: sticky;
+  top: 1rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(0,0,0,0.08);
+  font-size: 0.9rem;
+}
+
+.talk-year .anchorjs-link {
+  display: none !important;
+}
+
+
+.talks-year-nav-title {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.talks-year-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.talks-year-nav li {
+  margin: 0.25rem 0;
+}
+
+.talks-year-nav a {
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.talks-year-nav a:hover {
+  opacity: 1;
+}
+
+.talk-year {
+  margin-bottom: 2.5rem;
+}
+
+.talk-type {
+  margin-top: 0.9rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  //color: $accent-teal;   // e.g. teal section labels
+  // or: 
+  color: $gray-700;  // more neutral
+}
+/* Kill the auto anchor link styling on these headings */
+.talk-type a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.talk-type a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Hide the little anchor icon Quarto appends */
+.talk-type a::after {
+  content: none;
+}
+// --- Talks listing cards ---
+
+.talk-entry {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba($space-navy, 0.06);
+  margin-left: 0.9rem;
+}
+
+.talk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.talk-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.talk-title {
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: $gray-900;
+}
+
+.talk-location {
+  margin-top: 0.12rem;
+  font-size: 0.9rem;
+  color: $gray-600;
+  margin-left: 0.55rem;
+  //font-style: italic;
+}
+
+.talk-date {
+  font-size: 0.9rem;
+  color: $gray-700;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+/* Links below each entry (slides, code, etc.) */
+.talk-links {
+  margin: 0.15rem 0 0.5rem 0;
+  padding-left: 0;
+  list-style: none;
+  margin-left: 0.55rem;
+
+}
+
+.talk-link {
+  display: inline-block;
+  margin-right: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.talk-link a {
+  text-decoration: none;
+  color: $deep-blue;
+  //color: inherit;
+  font-weight: 500;
+
+  &:hover {
+    color: darken($accent-teal, 6%);
+    text-decoration: underline;
+    //color: inherit;
+    //text-decoration: none;
+  }
+}
+
+/* Mobile: stack title/location above date */
+@media (max-width: 600px) {
+  .talk-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .talk-date {
+    margin-top: 0.2rem;
+  }
+}
+.talk-description {
+  margin-top: 0.18rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: $gray-900;
+  margin-left: 0.55rem;
+  font-weight: 450;
+}
+.talk-link-disabled {
+  font-size: 0.85rem;
+  color: $gray-400;
+  font-weight: 500;
+  cursor: default;
+}
+
+/* "More" page section headings – keep exact h2 typography, just tweak spacing */
+.more-heading {
+  /* inherit all h2 typography from the theme */
+  margin-top: 1.75rem;    // adjust if you want a bit closer/further
+  margin-bottom: 0.75rem;
+}
+
+.more-section {
+  margin-bottom: 2rem;
+}
+
+
+.nav-icon {
+  height: 1.2rem;
+  vertical-align: text-bottom;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.orcid-icon {
+  height: 1.1rem;
+  vertical-align: text-bottom;
+  margin-right: 0.25rem;
+}
+
+/* ---- Skills layout on More page ---- */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+  margin-left: 0.9rem;   // line up with .talk-entry
+}
+
+.skill-card {
+  padding: 0.55rem 0.9rem 0.75rem;
+  border-radius: 0.4rem;
+  border: 1px solid rgba($space-navy, 0.06);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.skill-title {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.02rem;                     // match .talk-title
+  font-weight: 600;
+  color: $gray-900;
+}
+
+/* Always-visible list of skills / capability bullets */
+.skill-bullets {
+  margin: 0;
+  padding-left: 1.05rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: $gray-800;
+}
+
+.skill-bullets li + li {
+  margin-top: 0.15rem;
+}
+
+/* Collapsible experience block inside each card */
+.skill-experience {
+  margin-top: 0.35rem;
+}
+
+/* The clickable “Experience” label (summary) */
+.skill-exp-toggle {
+  list-style: none;
+  cursor: pointer;
+  font-size: 0.86rem;
+  color: $deep-blue;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.skill-exp-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.skill-exp-toggle::after {
+  content: " ▾";
+  font-size: 0.75rem;
+  color: $gray-500;
+}
+
+.skill-experience[open] .skill-exp-toggle::after {
+  content: " ▴";
+}
+
+/* Bullets that appear when “Experience” is opened */
+.skill-exp-list {
+  margin: 0.3rem 0 0;
+  padding-left: 1.05rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: $gray-800;
+}
+
+.skill-exp-list li + li {
+  margin-top: 0.15rem;
+}
+
+/* Optional certifications line inside card */
+.skill-certifications {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: $gray-700;
+}
+
+.skill-certifications .skill-label {
+  font-weight: 600;
+}
+
+/* Stack cards on small screens */
+@media (max-width: 700px) {
+  .skills-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+}

@@ -1,0 +1,125 @@
+project:
+  type: website
+
+  preview: 
+    port: 5555
+    browser: true
+    watch-inputs: true
+    navigate: true
+
+  render:
+    - "*.qmd"
+    - "*.md"
+    - "!etc/"
+
+  resources:
+    - "files/**"
+    - "etc/**"
+    - ".htaccess"
+    - "cv/CV_Ankit_Yadav.pdf"
+    - "images/**"        # ship all image assets
+
+freeze: true
+
+# Turn off citations for now; re-enable later when you have real files
+# bibliography: files/bib/references.bib
+# csl: files/bib/chicago-author-date.csl
+
+pagetitle: "{{< meta title >}} | Ankit Yadav"
+author-meta: "Ankit Yadav"
+
+website:
+  title: "Ankit Yadav"
+  description: "Ankit Yadav is a PhD candidate in astroparticle physics at Khalifa University, working on Galactic cosmic rays, Bayesian modeling, and multi-messenger astrophysics."
+  favicon: "/images/headshot.jpg"
+  site-url: "https://your-domain.example"         # TODO: replace with your real domain
+  repo-url: "{{< var github-url >}}"              # GitHub repo for this site (optional)
+
+  twitter-card: 
+    image: "/images/headshot.jpg"
+    card-style: summary_large_image
+    creator: "@yourhandle"                        # TODO
+    site: "@yourhandle"                           # TODO
+
+  open-graph: 
+    image: "/images/headshot.jpg"
+    locale: en_US
+  
+  navbar:
+    pinned: true
+
+    left:
+      - text: "About"
+        href: "index.qmd"
+      - text: "CV"
+        href: "cv/index.qmd"
+      - text: "Research"
+        file: research/index.qmd
+      # - text: "Publications"
+      #   href: "publications/index.qmd"
+      - text: "Conferences, Presentations & Training"
+        href: "talks/index.qmd"
+      - text: "Teaching"
+        href: "teaching/index.qmd"
+      - text: "More"
+        href: "more/index.qmd"
+      # - text: "Now"
+      #   href: "now/index.qmd"
+      # - text: "Uses"
+      #   file: uses/index.qmd
+    
+    right:
+      - text: '<img src="/images/KU_logo.png" alt="Khalifa University" class="nav-icon">'
+        href: "{{< var ku-profile >}}"
+        aria-label: "Khalifa University profile"
+        target: "_blank"
+
+      - text: '<img src="/images/Google_Scholar_logo.svg" alt="Google Scholar" class="nav-icon">'
+        href: "{{< var google-scholar >}}"
+        aria-label: "Google Scholar profile"
+        target: "_blank"
+
+      - text: '<img src="/images/ORCID_iD.svg" alt="ORCID iD" class="nav-icon">'
+        href: "https://orcid.org/{{< var orcid >}}"
+        aria-label: "ORCID profile"
+        target: "_blank"
+
+      - text: '<img src="/images/LinkedIn_icon.svg" alt="LinkedIn" class="nav-icon">'
+        href: "{{< var linkedin-url >}}"
+        aria-label: "LinkedIn profile"
+        target: "_blank"
+
+      - text: '<img src="/images/Gmail_icon_(2020).svg" alt="Email" class="nav-icon">'
+        href: "mailto:{{< var email.primary >}}"
+        aria-label: "Email Ankit Yadav"
+        target: "_blank"
+
+  page-footer:
+    left: |
+      <span class="faux-block">© {{< var years >}} {{< var name >}}</span>
+      <span class="faux-block">Content licensed under
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></span>
+    center: |
+      <span class="faux-block">
+        [![ORCID iD](/images/ORCID_iD.svg){.orcid-icon}](https://orcid.org/{{< var orcid >}}){target="_blank" rel="noopener"}
+        {{< var orcid >}}
+      </span>
+    right: |
+      <span class="faux-block">Made with <a href="https://quarto.org/" target="_blank" rel="noopener">Quarto</a></span>
+      <span class="faux-block">
+        [Site source on GitHub]({{< var github-url >}}){target="_blank" rel="noopener"}
+      </span>
+
+format:
+  html:
+    theme: 
+      - html/ankit.scss
+    grid: 
+      body-width: 900px
+    toc: false
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    highlight-style: monokai

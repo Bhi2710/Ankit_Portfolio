@@ -1,0 +1,87 @@
+---
+title: "Bayesian Modeling of Galactic Cosmic-Ray Propagation"
+subtitle: "MCMC constraints on diffusion, weak-shock re-acceleration, and solar modulation"
+description: >
+  Bayesian (MCMC) inference and numerical modeling of Galactic cosmic-ray transport.
+  We constrain diffusion properties, weak-shock re-acceleration during propagation,
+  and solar modulation using multi-experiment data (AMS-02, CALET, CREAM, DAMPE, Voyager),
+  with emphasis on reproducing the proton spectrum and the B/C ratio.
+
+categories:
+  - Galactic cosmic rays
+  - Astroparticle physics
+  - Bayesian inference
+
+pub-info:
+  year: 2025
+  reference: >
+    <strong>Yadav A.,</strong> Thoudam S., Eichmann B., &amp; Rachen J. P., 2025,
+    <em>Bayesian Modeling of Galactic Cosmic-Ray Propagation</em>,
+    <em>Proceedings of Science</em> (ICRC2025), 501, 154.
+
+  links:
+    - name: PoS PDF
+      url: "https://pos.sissa.it/501/154/pdf"
+      icon: fa-solid fa-file-pdf
+      local: false #opens it in a new tab
+    #- name: arXiv
+      #url: "#"
+      #icon: fa-solid fa-book-open
+      #local: false
+    #- name: Code
+      #url: "#"
+      #icon: fa-brands fa-github
+      #local: false
+---
+
+## Abstract
+
+Recent measurements from advanced cosmic-ray detectors have revealed spectral features, including a hardening in the GeV–TeV energy range, challenging standard models of cosmic-ray acceleration and propagation. Re-acceleration of cosmic rays by weak shocks in the Galaxy provides a promising explanation, accounting for the observed spectral features of different nuclei and the boron-to-carbon (B/C) ratio. In this framework, cosmic rays are accelerated by strong supernova shocks and then diffuse through the Galaxy. During propagation, they undergo re-acceleration when encountering expanding supernova-remnant shocks. Because older remnants are larger and therefore more likely to be encountered than younger ones, re-acceleration is predominantly driven by weaker shocks, yielding a softer particle spectrum below ∼100 GeV. At higher energies, the spectrum is dominated by cosmic rays from young supernova remnants.  
+
+In this study, we use Markov Chain Monte Carlo (MCMC) to infer key parameters governing cosmic-ray transport—diffusion properties, re-acceleration strength, and solar modulation—using observational data from AMS-02, CALET, CREAM, DAMPE, and Voyager. Preliminary results indicate that weak-shock re-acceleration can consistently reproduce the proton spectrum and the B/C ratio.
+<!-- 
+## Key figures
+
+::: {.key-figure}
+![Schematic of cosmic-ray transport and re-acceleration by weak SNR shocks.](figures/gcr-transport-schematic.png)
+:::
+
+::: {.key-figure}
+![Example model spectrum compared to experimental data.](figures/gcr-spectrum-comparison.png)
+:::
+-->
+
+## Links & citation
+
+- **PoS PDF:** [Download from PoS](https://pos.sissa.it/501/154/pdf) 
+<!-- 
+- **arXiv:** [to be added](#)  
+- **Code & notebooks:** [to be added](#)  
+-->
+
+### Suggested citation
+
+<!-- 
+**Preferred citation**
+
+**A. Yadav**, S. Thoudam, B. Eichmann, and J. P. Rachen,  
+*Bayesian Modeling of Galactic Cosmic-Ray Propagation*,  
+Proceedings of Science (ICRC2025), vol. 501, p. 154, 2025.
+-->
+
+
+::: {.callout-note}
+#### BibTeX
+
+~~~~{.bibtex}
+@inproceedings{Yadav2025BayesianGCR,
+  author    = {Yadav, A. and Thoudam, S. and Eichmann, B. and Rachen, J. P.},
+  title     = {Bayesian Modeling of Galactic Cosmic-Ray Propagation},
+  booktitle = {Proceedings of Science},
+  series    = {39th International Cosmic Ray Conference (ICRC2025)},
+  volume    = {501},
+  pages     = {154},
+  year      = {2025}
+}
+~~~~
+:::

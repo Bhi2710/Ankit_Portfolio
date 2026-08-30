@@ -1,0 +1,38 @@
+---
+title: "Hello there!"
+pagetitle: "Ankit Yadav"
+description-meta: "Ankit Yadav is a PhD candidate in astroparticle physics at Khalifa University, researching Galactic cosmic rays and multi-messenger astrophysics."
+main-photo: /images/headshot.jpg
+main-photo-square: /images/headshot.jpg
+title-block-banner: "#0b1b2b"
+format:
+  html:
+    quarto-template-params:
+      banner-header-class: "home"
+---
+
+::: {.home-hero}
+
+::: {.home-hero-photo}
+
+~~~{=html}
+<picture>
+  <source media="(max-width: 576px)" srcset="{{< meta main-photo-square >}}">
+  <source media="(min-width: 576px)" srcset="{{< meta main-photo >}}">
+  <img class="img-fluid home-photo" src="{{< meta main-photo >}}" alt="{{< meta author-meta >}}">
+</picture>
+~~~
+
+:::
+
+::: {.home-hero-text}
+
+I’m a PhD candidate in the Department of Physics at [Khalifa University](https://www.ku.ac.ae/), Abu Dhabi, working with Dr. Satyendra Thoudam on the origin and propagation of Galactic cosmic rays.
+
+My research focuses on Bayesian modeling and numerical simulations of cosmic-ray transport, combining data from space- and ground-based experiments. I’m broadly interested in astroparticle physics, high-energy astrophysics, and multi-messenger astronomy.
+
+(You can change all this text later—right now we care about layout.)
+
+:::
+
+:::
