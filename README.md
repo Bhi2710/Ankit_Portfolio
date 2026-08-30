@@ -1,5 +1,3 @@
----
-
 ##  Project File Structure
 
 ```
